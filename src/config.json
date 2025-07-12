@@ -1,0 +1,4 @@
+{
+  "bakendURL": "http://localhost:1010",
+  "searchEnd": "http://localhost:5000"
+}
