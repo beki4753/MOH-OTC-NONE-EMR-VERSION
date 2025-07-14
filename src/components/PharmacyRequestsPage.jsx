@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Typography, useTheme, Stack, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import dayjs from "dayjs";
@@ -23,16 +23,20 @@ const PharmacyRequestsPage = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
+      const requestedto = tokenValue?.UserType?.toLowerCase()?.includes("mlt")
+        ? "Lab"
+        : tokenValue?.UserType;
       const response = await api.put("/Request/doctor/rpt-get-request", {
         start: startDate,
         end: endDate,
-        requestedto: "pharmacy",
+        requestedto: requestedto || "-",
       });
 
       const data = response.data?.data?.value || [];
 
       const filtered = data.filter(
-        (item) => item.requestedDepartment?.toLowerCase() === "pharmacy"
+        (item) =>
+          item.requestedDepartment?.toLowerCase() === requestedto?.toLowerCase()
       );
 
       const formattedRows = filtered.map((item, index) => ({

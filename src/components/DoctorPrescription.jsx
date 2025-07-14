@@ -204,7 +204,7 @@ const DoctorPrescription = () => {
 
   const fetchData = async () => {
     try {
-      const response = await api.get("/Request/doctor/get-request-pharma");
+      const response = await api.get("/Request/doctor/get-request/Pharmacy");
       const value = response?.data?.data?.value || [];
 
       const sorted = await groupRequestsByPatientAndDate(value);

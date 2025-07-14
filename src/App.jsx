@@ -66,28 +66,33 @@ const role = tokenvalue
   : "";
 
 const ProtectedRoute = ({ element, allowedRoles, allowedCategory }) => {
-  const userType = tokenvalue?.UserType;
+  try {
+    const userType = tokenvalue?.UserType;
 
-  if (!token) {
-    logout();
-    return;
-  }
+    if (!token) {
+      logout();
+      return;
+    }
 
-  const roleMatched = allowedRoles?.some(
-    (item) => item.toLowerCase() === role?.toLowerCase()
-  );
-
-  const categoryMatched =
-    allowedCategory?.includes("All") ||
-    allowedCategory?.some(
-      (item) => item.toLowerCase() === userType?.toLowerCase()
+    const roleMatched = allowedRoles?.some(
+      (item) => item.toLowerCase() === role?.toLowerCase()
     );
 
-  if (allowedRoles && (!roleMatched || !categoryMatched)) {
-    return <Navigate to="/unauthorized" replace />;
-  }
+    const categoryMatched =
+      allowedCategory?.map((item) => item?.toLowerCase())?.includes("all") ||
+      allowedCategory?.some(
+        (item) => item.toLowerCase() === userType?.toLowerCase()
+      );
 
-  return element;
+    if (allowedRoles && (!roleMatched || !categoryMatched)) {
+      return <Navigate to="/unauthorized" replace />;
+    }
+
+    return element;
+  } catch (error) {
+    console.error("This is the ProtectedRoute Error : ", error);
+    return null;
+  }
 };
 
 const getHomeElementByRole = (role, tokenvalue) => {
@@ -170,7 +175,7 @@ const router = createBrowserRouter([
           <ProtectedRoute
             element={<PharmacyRequestsPage />}
             allowedRoles={["User"]}
-            allowedCategory={["Pharmacy"]}
+            allowedCategory={["All"]}
           />
         ),
       },

@@ -316,6 +316,13 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
                     selected={selected}
                     setSelected={setSelected}
                   />
+                  <Item
+                    title="Request History"
+                    to="/Pharmacy-hist"
+                    icon={<BarChartOutlinedIcon />}
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
                 </>
               )}
             {["USER"]?.includes(role?.toUpperCase()) &&
