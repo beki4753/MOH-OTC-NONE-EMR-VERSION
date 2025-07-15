@@ -806,7 +806,8 @@ const BahmniOrderPage = () => {
           rows={rows}
           columns={columns}
           loading={loading}
-          sx={{ height: 320 }}
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Box>
 

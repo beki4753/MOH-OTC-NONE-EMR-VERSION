@@ -468,6 +468,7 @@ const PaymentManagementLists = () => {
                 rows={rows}
                 columns={columns}
                 autoHeight
+                sx={{ minWidth: 320 }}
                 slots={{
                   toolbar: () => (
                     <CustomToolbar

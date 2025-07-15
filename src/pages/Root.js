@@ -2,16 +2,17 @@ import { Outlet } from "react-router-dom";
 import Topbar from "./global/Topbar";
 import Sidebar from "./global/Sidebar";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
-import { useState, useEffect } from "react";
-import { ColorModeContext, useMode,tokens } from "../theme";
+import { useState } from "react";
+import { ColorModeContext, useMode, tokens } from "../theme";
 import Login from "./login";
 import { getSession } from "../services/user_service";
 import tsedeyLogo from "../assets/logo.png";
 
 function RootLayout() {
   const token = getSession();
+
   const [theme, colorMode] = useMode();
-  const colors = tokens(theme.palette.mode)
+  const colors = tokens(theme.palette.mode);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -20,7 +21,7 @@ function RootLayout() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {token ? (
+          {token?.length > 0 ? (
             <>
               <Box display="flex" alignContent="flex-start">
                 <Sidebar
@@ -63,7 +64,9 @@ function RootLayout() {
                         alt="Tsedey Bank Logo"
                         style={{ height: "60px", width: "auto" }}
                       />
-                      <span style={{ fontSize: "14px", color: colors.grey[100]}}>
+                      <span
+                        style={{ fontSize: "14px", color: colors.grey[100] }}
+                      >
                         © {new Date().getFullYear()} Tsedey Bank. All rights
                         reserved.
                       </span>

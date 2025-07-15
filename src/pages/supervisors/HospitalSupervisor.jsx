@@ -29,7 +29,9 @@ const HospitalSupervisor = () => {
   };
 
   const handleClearCredit = (organization) => {
-    const updatedCredit = creditPayments.filter((item) => item.organization !== organization);
+    const updatedCredit = creditPayments.filter(
+      (item) => item.organization !== organization
+    );
     setCreditPayments(updatedCredit);
     localStorage.setItem("creditPayments", JSON.stringify(updatedCredit));
   };
@@ -73,7 +75,12 @@ const HospitalSupervisor = () => {
       <Card>
         <CardContent>
           <Typography variant="h6">Pending Approvals</Typography>
-          <DataGrid rows={pendingApprovals} columns={columns} autoHeight pageSize={5} />
+          <DataGrid
+            rows={pendingApprovals}
+            columns={columns}
+            autoHeight
+            sx={{ minWidth: 320 }}
+          />
         </CardContent>
       </Card>
 
@@ -81,14 +88,18 @@ const HospitalSupervisor = () => {
         <Card>
           <CardContent>
             <Typography variant="h6">CBHI Payments</Typography>
-            <Button variant="contained" color="secondary" onClick={handleClearAllCbhi}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleClearAllCbhi}
+            >
               Clear All CBHI
             </Button>
             <DataGrid
               rows={cbhiPayments}
               columns={[{ field: "woreda", headerName: "Woreda", width: 200 }]}
               autoHeight
-              pageSize={5}
+              sx={{ minWidth: 320 }}
             />
           </CardContent>
         </Card>
@@ -98,14 +109,24 @@ const HospitalSupervisor = () => {
         <Card>
           <CardContent>
             <Typography variant="h6">Credit Payments</Typography>
-            <Button variant="contained" color="secondary" onClick={handleClearAllCredit}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleClearAllCredit}
+            >
               Clear All Credit
             </Button>
             <DataGrid
               rows={creditPayments}
-              columns={[{ field: "organization", headerName: "Organization", width: 200 }]}
+              columns={[
+                {
+                  field: "organization",
+                  headerName: "Organization",
+                  width: 200,
+                },
+              ]}
               autoHeight
-              pageSize={5}
+              sx={{ minWidth: 320 }}
             />
           </CardContent>
         </Card>

@@ -248,8 +248,8 @@ const EmployeeUploadManager = () => {
         <DataGrid
           rows={fileData.length <= 0 ? data : fileData}
           columns={columns}
-          // getRowId={(row) => row.id}
-          // error={error}
+          autoHeight
+          sx={{ minWidth: 320 }}
           components={{
             ErrorOverlay: CustomErrorOverlay,
           }}

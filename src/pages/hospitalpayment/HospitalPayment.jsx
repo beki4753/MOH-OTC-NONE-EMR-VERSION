@@ -1766,7 +1766,12 @@ const HospitalPayment = () => {
         </Box>
       </Paper>
       <Paper sx={{ height: 400 }}>
-        <DataGrid rows={payments.length ? payments : []} columns={columns} />
+        <DataGrid
+          rows={payments.length ? payments : []}
+          columns={columns}
+          autoHeight
+          sx={{ minWidth: 320 }}
+        />
       </Paper>
       <ReceiptModal
         open={receiptOpen}

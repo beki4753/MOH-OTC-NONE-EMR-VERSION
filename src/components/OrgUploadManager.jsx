@@ -471,6 +471,8 @@ const OrgUploadManager = () => {
           components={{
             ErrorOverlay: CustomErrorOverlay,
           }}
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Paper>
       <EditCreditUsers

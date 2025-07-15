@@ -790,6 +790,7 @@ const DoctorPrescription = () => {
             rows={rows}
             columns={columns}
             density="comfortable" // More compact row spacing
+            autoHeight
             sx={{
               "& .MuiDataGrid-columnHeaders": {
                 backgroundColor: theme.palette.primary.light + "15", // Light background for headers
@@ -799,6 +800,7 @@ const DoctorPrescription = () => {
                 borderBottom: `1px dotted ${theme.palette.divider}`, // Dotted line between cells
               },
               border: "none", // Remove default DataGrid border
+              minWidth: 320,
             }}
             onRowDoubleClick={handleRowDoubleClick}
           />

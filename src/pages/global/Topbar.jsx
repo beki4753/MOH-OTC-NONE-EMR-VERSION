@@ -22,7 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Logout from "@mui/icons-material/Logout";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { getTokenValue } from "../../services/user_service";
-import AMHRLogo from "../../assets/Amhara-region.png";
+// import AMHRLogo from "../../assets/Amhara-region.png";
 
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 

@@ -432,7 +432,12 @@ const FinancialDashboard = () => {
           <Typography variant="h6" gutterBottom>
             Recent Transactions
           </Typography>
-          <DataGrid rows={transactions} columns={columns} autoHeight />
+          <DataGrid
+            rows={transactions}
+            columns={columns}
+            autoHeight
+            sx={{ minWidth: 320 }}
+          />
         </CardContent>
       </Card>
 

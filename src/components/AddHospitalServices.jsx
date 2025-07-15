@@ -143,7 +143,12 @@ const AddHospitalServices = ({
           </Button>
         </Stack>
         <Box sx={{ height: 400, width: "100%" }}>
-          <DataGrid rows={rows} columns={columns} />
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            autoHeight
+            sx={{ minWidth: 320 }}
+          />
         </Box>
         <Box sx={{ display: "flex", justifyContent: "right", width: "100%" }}>
           <Button

@@ -1250,9 +1250,10 @@ function PaymentManagement() {
         <Grid item xs={12}>
           <DataGrid
             rows={filteredRows}
-            // getRowId={(row) => row.patientCardNumber}
             loading={isLoading}
             columns={columns}
+            autoHeight 
+            sx={{ minWidth: 320 }}
           />
         </Grid>
       </Grid>

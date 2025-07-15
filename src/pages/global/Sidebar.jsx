@@ -24,7 +24,6 @@ import BusinessIcon from "@mui/icons-material/Business";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 import { CreditCard } from "@mui/icons-material";
 import MOHLogo from "../../assets/logo_bg.png";
-import ScienceIcon from "@mui/icons-material/Science";
 import LocalHotelIcon from "@mui/icons-material/LocalHotel";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
@@ -297,17 +296,31 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
             )}
 
             {["USER"]?.includes(role?.toUpperCase()) &&
-              ["MLT"]?.includes(tokenvalue?.UserType?.toUpperCase()) && (
+              ["MLT", "RADIOLOGY"]?.includes(
+                tokenvalue?.UserType?.toUpperCase()
+              ) && (
                 <>
-                  {!isCollapsed && (
-                    <Typography
-                      variant="h6"
-                      color={colors.grey[300]}
-                      sx={{ m: "15px 0 5px 20px" }}
-                    >
-                      Treatment Entry Manager
-                    </Typography>
-                  )}
+                  {!isCollapsed &&
+                    tokenvalue?.UserType?.toUpperCase() === "MLT" && (
+                      <Typography
+                        variant="h6"
+                        color={colors.grey[300]}
+                        sx={{ m: "15px 0 5px 20px" }}
+                      >
+                        Treatment Entry Manager
+                      </Typography>
+                    )}
+
+                  {!isCollapsed &&
+                    tokenvalue?.UserType?.toUpperCase() === "RADIOLOGY" && (
+                      <Typography
+                        variant="h6"
+                        color={colors.grey[300]}
+                        sx={{ m: "15px 0 5px 20px" }}
+                      >
+                        Radiology Entry Manager
+                      </Typography>
+                    )}
 
                   <Item
                     title="Treatment Entry"
@@ -325,28 +338,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
                   />
                 </>
               )}
-            {["USER"]?.includes(role?.toUpperCase()) &&
-              ["RADIOLOGY"]?.includes(tokenvalue?.UserType?.toUpperCase()) && (
-                <>
-                  {!isCollapsed && (
-                    <Typography
-                      variant="h6"
-                      color={colors.grey[300]}
-                      sx={{ m: "15px 0 5px 20px" }}
-                    >
-                      Radiology Entry Manager
-                    </Typography>
-                  )}
 
-                  <Item
-                    title="Radiology Entry"
-                    to="/radiology-entry"
-                    icon={<ScienceIcon />}
-                    selected={selected}
-                    setSelected={setSelected}
-                  />
-                </>
-              )}
             {["USER"]?.includes(role?.toUpperCase()) &&
               ["WARD"]?.includes(tokenvalue?.UserType?.toUpperCase()) && (
                 <>

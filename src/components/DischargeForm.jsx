@@ -1072,9 +1072,11 @@ const DischargeForm = () => {
           <DataGrid
             rows={rowData}
             columns={columns}
+            autoHeight
             sx={{
               backgroundColor: theme.palette.background.default,
               borderRadius: 2,
+              minWidth: 320,
             }}
             onRowDoubleClick={handleDoubleClick}
             localeText={{

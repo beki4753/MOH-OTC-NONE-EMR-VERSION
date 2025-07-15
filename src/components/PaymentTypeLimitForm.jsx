@@ -403,7 +403,13 @@ const PaymentTypeLimitForm = () => {
       </Typography>
 
       <Box sx={{ height: 400, width: "100%", mt: 2 }}>
-        <DataGrid rows={limits} columns={columns} loading={loading} />
+        <DataGrid
+          rows={limits}
+          columns={columns}
+          loading={loading}
+          autoHeight
+          sx={{ minWidth: 320 }}
+        />
       </Box>
 
       <ConfirmationModal

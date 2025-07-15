@@ -133,8 +133,7 @@ export default function FriendlyAgeFilterDataGrid() {
         rows={filteredRows}
         columns={columns}
         autoHeight
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        sx={{ minWidth: 320 }}
       />
     </Box>
   );

@@ -255,7 +255,12 @@ const UserManagment = () => {
         clearUserData={handleCleare}
       />
       <div className="data-grid-container">
-        <DataGrid rows={rows} columns={columns} autoHeight />
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          autoHeight
+          sx={{ minWidth: 320 }}
+        />
       </div>
       <ToastContainer />
     </div>

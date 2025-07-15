@@ -118,7 +118,7 @@ const RoleManagment = () => {
           rows={rows}
           columns={columns}
           autoHeight
-          pageSizeOptions={[5, 10]}
+          sx={{ minWidth: 320 }}
         />
       </div>
       <ToastContainer />

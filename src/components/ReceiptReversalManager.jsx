@@ -261,7 +261,7 @@ const ReceiptReversalManager = () => {
         columns={columns}
         loading={isLoading}
         autoHeight
-        disableSelectionOnClick
+        sx={{ minWidth: 320 }}
       />
 
       <ReversalModal

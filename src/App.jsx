@@ -1,61 +1,88 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  Dashboard,
-  Bar,
-  Form,
-  Line,
-  Pie,
-  FAQ,
-  Login,
-  Geography,
-  Calendar,
-  NotFoundPage,
-  RootLayout,
-  ProfilePage,
-  HospitalPayment,
-  ReportPage,
-  BankerComponent,
-  CollectedReport,
-  AdminDashboard,
-} from "./pages";
 
+// Services and hooks (not lazy loaded)
 import { logout as logoutAction } from "./services/user_service.js";
 import { getTokenValue, getSession, logout } from "./services/user_service.js";
 import useTokenCheck from "./services/useTokenCheck.js";
+import ErrorBoundary from "./ErrorBoundary.jsx";
+import FallbackLoader from "./components/FallbackLoader";
 
-import {
-  OrgUploadManager,
-  UserManagment,
-  RoleManagment,
-  FinancialDashboard,
-  PaymentManagementLists,
-  EmployeeUploadManager,
-  ReportReceiptFetcher,
-  PatientRegistration,
-  PatientSearch,
-  FriendlyAgeFilterDataGrid,
-  CBHIUsersManager,
-  TrafficAccidentForm,
-  TreatmentEntry,
-  PaymentManagement,
-  UnauthorizedPage,
-  ReceiptReversalManager,
-  PaymentRecords,
-  TreatmentEntryR,
-  DischargeForm,
-  PaymentTypeLimitForm,
-  PaymentTypeForm,
-  BahmniOrderPage,
-  DoctorPrescription,
-  PharmacyPage,
-  PharmacyRequestsPage,
-} from "./components";
+// Pages
+const Dashboard = lazy(() => import("./pages/dashboard"));
+const Bar = lazy(() => import("./pages/bar"));
+const Form = lazy(() => import("./pages/form"));
+const Line = lazy(() => import("./pages/line"));
+const Pie = lazy(() => import("./pages/pie"));
+const FAQ = lazy(() => import("./pages/faq"));
+const Login = lazy(() => import("./pages/login"));
+const Geography = lazy(() => import("./pages/geography"));
+const Calendar = lazy(() => import("./pages/calendar/calendar"));
+const NotFoundPage = lazy(() => import("./pages/errorPage/NotFoundPage ")); // This space is mandatory unless it creates error on import
+const RootLayout = lazy(() => import("./pages/Root"));
+const ProfilePage = lazy(() => import("./pages/profile/ProfilePage"));
+const HospitalPayment = lazy(() =>
+  import("./pages/hospitalpayment/HospitalPayment")
+);
+const ReportPage = lazy(() => import("./pages/reports/ReportPage"));
+const BankerComponent = lazy(() =>
+  import("./pages/supervisors/BankerComponent")
+);
+const CollectedReport = lazy(() => import("./pages/reports/CollectedReport"));
+const AdminDashboard = lazy(() => import("./pages/dashboard/AdminDashboard"));
+
+// Components
+const OrgUploadManager = lazy(() => import("./components/OrgUploadManager"));
+const UserManagment = lazy(() => import("./components/UserManagment"));
+const RoleManagment = lazy(() => import("./components/RoleManagment"));
+const FinancialDashboard = lazy(() =>
+  import("./components/FinancialDashboard")
+);
+const PaymentManagementLists = lazy(() =>
+  import("./components/PaymentManagementLists.jsx")
+);
+const EmployeeUploadManager = lazy(() =>
+  import("./components/EmployeeUploadManager")
+);
+const ReportReceiptFetcher = lazy(() =>
+  import("./components/ReportReceiptFetcher")
+);
+const PatientRegistration = lazy(() =>
+  import("./components/PatientRegistration")
+);
+const PatientSearch = lazy(() => import("./components/PatientSearch"));
+const FriendlyAgeFilterDataGrid = lazy(() =>
+  import("./components/FriendlyAgeFilterDataGrid")
+);
+const CBHIUsersManager = lazy(() => import("./components/CBHIUsersManager"));
+const TrafficAccidentForm = lazy(() =>
+  import("./components/TrafficAccidentForm")
+);
+const TreatmentEntry = lazy(() => import("./components/TreatmentEntry"));
+const PaymentManagement = lazy(() => import("./components/PaymentManagement"));
+const UnauthorizedPage = lazy(() => import("./components/UnauthorizedPage"));
+const ReceiptReversalManager = lazy(() =>
+  import("./components/ReceiptReversalManager")
+);
+const PaymentRecords = lazy(() => import("./components/PaymentRecords"));
+const DischargeForm = lazy(() => import("./components/DischargeForm"));
+const PaymentTypeLimitForm = lazy(() =>
+  import("./components/PaymentTypeLimitForm")
+);
+const PaymentTypeForm = lazy(() => import("./components/PaymentTypeForm"));
+const BahmniOrderPage = lazy(() => import("./components/BahmniOrderPage"));
+const DoctorPrescription = lazy(() =>
+  import("./components/DoctorPrescription")
+);
+const PharmacyPage = lazy(() => import("./components/PharmacyPage"));
+const PharmacyRequestsPage = lazy(() =>
+  import("./components/PharmacyRequestsPage")
+);
 
 const tokenvalue = getTokenValue();
 
@@ -98,8 +125,7 @@ const ProtectedRoute = ({ element, allowedRoles, allowedCategory }) => {
 const getHomeElementByRole = (role, tokenvalue) => {
   if (role?.toUpperCase() === "USER") {
     const userType = tokenvalue?.UserType?.toUpperCase();
-    if (userType === "MLT") return <TreatmentEntry />;
-    if (userType === "RADIOLOGY") return <TreatmentEntryR />;
+    if (["MLT", "RADIOLOGY"]?.includes(userType)) return <TreatmentEntry />;
     if (userType === "WARD") return <DischargeForm />;
     if (userType === "PHARMACY") return <PharmacyPage />;
     if (userType === "DOCTOR") return <DoctorPrescription />;
@@ -113,8 +139,12 @@ const getHomeElementByRole = (role, tokenvalue) => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, // Ensuring layout consistency
-    errorElement: <NotFoundPage />,
+    element: (
+      <Suspense fallback={<FallbackLoader />}>
+        <RootLayout />
+      </Suspense>
+    ),
+    errorElement: <ErrorBoundary />,
     id: "root",
     loader: getSession,
     children: [
@@ -230,22 +260,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "radiology-entry",
-        element: (
-          <ProtectedRoute
-            element={<TreatmentEntryR />}
-            allowedRoles={["User"]}
-            allowedCategory={["Radiology"]}
-          />
-        ),
-      },
-      {
         path: "treatment-entry",
         element: (
           <ProtectedRoute
             element={<TreatmentEntry />}
             allowedRoles={["User"]}
-            allowedCategory={["MLT"]}
+            allowedCategory={["MLT", "Radiology"]}
           />
         ),
       },
@@ -448,7 +468,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
-      {/* <SearchableList /> */}
     </>
   );
 }

@@ -745,6 +745,8 @@ function TrafficAccidentCrud() {
             localeText={{
               noRowsLabel: "No traffic accident records to display",
             }}
+            autoHeight
+            sx={{ minWidth: 320 }}
           />
         </Box>
       </Box>

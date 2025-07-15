@@ -46,8 +46,8 @@ import {
 import api from "../utils/api";
 import { formatAccounting2 } from "../pages/hospitalpayment/HospitalPayment";
 import { ClipboardList } from "lucide-react";
-import DoneIcon from "@mui/icons-material/Done"; 
-import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty"; 
+import DoneIcon from "@mui/icons-material/Done";
+import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { alpha } from "@mui/material/styles";
 
@@ -656,7 +656,9 @@ const Pharmacy = () => {
                   disableSelectionOnClick
                   hideFooterSelectedRowCount
                   getRowId={(row) => row.id}
+                  autoHeight
                   sx={{
+                    minWidth: 320,
                     border: `1px solid ${theme.palette.divider}`,
                     borderRadius: 2,
                     marginTop: "10px",

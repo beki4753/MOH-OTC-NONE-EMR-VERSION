@@ -1212,6 +1212,8 @@ const ReportPage = () => {
           slots={{
             noResultsOverlay: CustomNoResultsOverlay,
           }}
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Paper>
       <Button

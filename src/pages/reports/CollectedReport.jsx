@@ -296,6 +296,8 @@ const CollectedReport = () => {
               },
             },
           ]}
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Paper>
       <Button

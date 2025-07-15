@@ -311,9 +311,7 @@ function CBHIUsersManager() {
         autoHeight
         rows={users}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        sx={{ boxShadow: 3, borderRadius: 2 }}
+        sx={{ boxShadow: 3, borderRadius: 2,minWidth: 320 }}
       />
 
       <Dialog

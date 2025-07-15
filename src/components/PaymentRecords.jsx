@@ -768,6 +768,8 @@ const PaymentTable = () => {
           columns={columns}
           loading={loading}
           disableRowSelectionOnClick
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Box>
       <ToastContainer />

@@ -37,12 +37,11 @@ const BankerComponent = () => {
     const storedPayments = localStorage.getItem("cashPayments");
     return storedPayments ? JSON.parse(storedPayments) : mockCashPayments;
   });
-  const  [selectedHosp,setSelectedHosp] = useState({selectedHosp:""})
+  const [selectedHosp, setSelectedHosp] = useState({ selectedHosp: "" });
 
-
-const handleChange = (e) => {
-  setSelectedHosp(e.target.value);
-};
+  const handleChange = (e) => {
+    setSelectedHosp(e.target.value);
+  };
 
   useEffect(() => {
     localStorage.setItem("cashPayments", JSON.stringify(cashPayments));
@@ -201,15 +200,17 @@ const handleChange = (e) => {
               label="Select Hospital"
               name="selectedHosp"
               value={selectedHosp}
-              onChange={(e)=>handleChange(e)}
+              onChange={(e) => handleChange(e)}
               margin="normal"
               required
             >
-              {cashPayments.map((items)=>items.hospital).map((type, index) => (
-                <MenuItem key={index} value={type}>
-                  {type}
-                </MenuItem>
-              ))}
+              {cashPayments
+                .map((items) => items.hospital)
+                .map((type, index) => (
+                  <MenuItem key={index} value={type}>
+                    {type}
+                  </MenuItem>
+                ))}
             </TextField>
           </Box>
         </Grid>
@@ -222,6 +223,8 @@ const handleChange = (e) => {
           columns={columns}
           pageSize={5}
           disableSelectionOnClick
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Paper>
     </Container>

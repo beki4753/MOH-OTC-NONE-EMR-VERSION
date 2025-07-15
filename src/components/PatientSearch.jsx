@@ -269,7 +269,7 @@ const PatientSearch = () => {
       );
 
       const response = await api.put("/Patient/get-patient-info", payload);
-      
+
       if (response?.status === 200) {
         const modDat = await dataModFunc(response?.data?.data?.value);
         if (modDat.length > 0) {
@@ -604,10 +604,10 @@ const PatientSearch = () => {
             <DataGrid
               rows={isSearching ? searchData : rows}
               columns={columns}
-              pageSize={5}
               loading={loading}
-              rowsPerPageOptions={[5]}
               disableSelectionOnClick
+              autoHeight
+              sx={{ minWidth: 320 }}
             />
           </Box>
         </Paper>

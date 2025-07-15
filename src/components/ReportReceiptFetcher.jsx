@@ -422,6 +422,7 @@ const ReportReceiptFetcher = () => {
           rows={tab === 0 ? reportData : receiptData}
           columns={columns}
           disableRowSelectionOnClick
+          sx={{ minWidth: 320 }}
         />
       </CardContent>
       <ToastContainer />

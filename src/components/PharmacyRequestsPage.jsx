@@ -282,12 +282,14 @@ const PharmacyRequestsPage = () => {
         </Stack>
       </Paper>
 
-      <Paper elevation={1} sx={{ height: 500 }}>
+      <Paper elevation={1}>
         <DataGrid
           rows={rows}
           columns={columns}
           loading={loading}
+          autoHeight
           sx={{
+            minWidth: 320,
             "& .MuiDataGrid-columnHeaders": {
               backgroundColor: theme.palette.primary.light,
               fontWeight: "bold",

@@ -107,8 +107,6 @@ export default function PatientTransactionsModal({ open, onClose, rows }) {
         <DataGrid
           rows={rows || []}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[5, 10, 20]}
           autoHeight
           disableSelectionOnClick
           sx={{
@@ -118,6 +116,7 @@ export default function PatientTransactionsModal({ open, onClose, rows }) {
             "& .MuiDataGrid-row:nth-of-type(odd)": {
               backgroundColor: theme.palette.action.selected,
             },
+            minWidth: 320,
           }}
         />
       </DialogContent>

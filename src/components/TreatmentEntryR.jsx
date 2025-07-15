@@ -885,12 +885,14 @@ const TreatmentEntryR = () => {
         </Grid>
       </Box>
 
-      <Paper elevation={2} sx={{ height: 400 }}>
+      <Paper elevation={2}>
         <DataGrid
           rows={treatmentList}
           loading={isLoading}
           columns={columns}
           disableSelectionOnClick
+          autoHeight
+          sx={{ minWidth: 320 }}
         />
       </Paper>
       <ToastContainer />

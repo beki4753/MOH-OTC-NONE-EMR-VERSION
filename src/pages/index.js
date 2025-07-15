@@ -1,4 +1,4 @@
-export {default as Dashboard} from "./dashboard";
+export {default as Dashboard} from "./dashboard/index.jsx";
 export {default as Bar }from "./bar";
 export {default as Form }from "./form";
 export {default as Line }from "./line";
@@ -15,3 +15,4 @@ export {default as ReportPage }from "./reports/ReportPage.jsx";
 export {default as BankerComponent }from "./supervisors/BankerComponent.jsx";
 export {default as CollectedReport }from "./reports/CollectedReport.jsx";
 export {default as AdminDashboard }from "./dashboard/AdminDashboard.jsx";
+
