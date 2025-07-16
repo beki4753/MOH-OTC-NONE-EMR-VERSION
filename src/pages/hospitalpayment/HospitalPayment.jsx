@@ -584,7 +584,7 @@ const HospitalPayment = () => {
       }
       if (e.target.name === "cardNumber") {
         setPatientName("");
-        handleNumberOnlyCheck(e.target.value);
+        mrncheck(e.target.value);
       }
       if (e.target.name === "PRNo") {
         numberOnlyCheck(e.target.value);
@@ -720,10 +720,10 @@ const HospitalPayment = () => {
     }
   };
 
-  const handleNumberOnlyCheck = (value) => {
+  const mrncheck = (value) => {
     try {
-      const regex = /^[0-9]{5,}$/;
-      if (!regex.test(value)) {
+      const regex = /^[0-9a-zA-Z\s\_\-]{5,}$/;
+      if (!regex.test(value) && value?.length > 0) {
         setCardNumberError("Please Insert Valid Card Number.");
       } else {
         setCardNumberError("");
@@ -1062,7 +1062,7 @@ const HospitalPayment = () => {
           cardNumberError?.length <= 0 &&
           formData?.cardNumber?.length > 0
         ) {
-          const response = await fetchPatientName(Number(formData?.cardNumber));
+          const response = await fetchPatientName(formData?.cardNumber);
 
           if (response?.length > 0) {
             setPatientName(response);

@@ -20,8 +20,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../utils/api";
 import { getTokenValue } from "../services/user_service";
-import axios from "axios";
-import config from "../config.json";
 
 const tokenvalue = getTokenValue();
 
@@ -252,18 +250,20 @@ function PatientRegistration() {
       try {
         const currentValue = formData?.[activeField] || "";
         if (currentValue.length > 1) {
-          const res = await axios.get(
-            `${config.searchEnd}/api/patients/search?query=${currentValue}`
+          const res = await api.get(
+            `/Patient/patient-name-suggestion/${currentValue}`
           );
-          const mod = res?.data?.map((item, index) => ({
+
+          const mod = res?.data?.data?.value?.map((item, index) => ({
             id: index + 1,
-            ...item,
+            firstName: item,
           }));
 
           const newMod = mod?.filter(
             (item, index, self) =>
               index === self?.findIndex((t) => t?.firstName === item?.firstName)
           );
+
           setOptions(newMod);
         }
       } catch (error) {
@@ -395,7 +395,8 @@ function PatientRegistration() {
   };
 
   const mrnCheck = (name, value) => {
-    const comp = /^[0-9]{5,}$/;
+    const comp = /^[0-9a-zA-Z\s\_\-]{5,}$/;
+
     if (!comp.test(value) && value.length > 0) {
       setFormDataError({
         name: name,
@@ -635,7 +636,7 @@ function PatientRegistration() {
       }
 
       const response = await api.put("/Patient/get-one-patient-info", {
-        patientCardNumber: `${Number(formData?.mrn)}`,
+        patientCardNumber: formData?.mrn,
       });
       if (response?.data?.data?.value?.length <= 0) {
         toast.info("Patient record not found for this card number.");

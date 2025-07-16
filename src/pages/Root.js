@@ -2,15 +2,25 @@ import { Outlet } from "react-router-dom";
 import Topbar from "./global/Topbar";
 import Sidebar from "./global/Sidebar";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ColorModeContext, useMode, tokens } from "../theme";
 import Login from "./login";
 import { getSession } from "../services/user_service";
 import tsedeyLogo from "../assets/logo.png";
 
 function RootLayout() {
-  const token = getSession();
+  // const token = getSession();
 
+  const [token, setToken] = useState(getSession());
+
+  useEffect(() => {
+    function onStorageChange() {
+      setToken(getSession());
+    }
+
+    window.addEventListener("storage", onStorageChange);
+    return () => window.removeEventListener("storage", onStorageChange);
+  }, []);
   const [theme, colorMode] = useMode();
   const colors = tokens(theme.palette.mode);
 

@@ -210,7 +210,7 @@ const PatientSearch = () => {
   };
 
   const mrnCheck = (name, value) => {
-    const valid = /^[0-9]{5,}$/.test(value);
+    const valid = /^[0-9a-zA-Z\s\_\-]{5,}$/.test(value);
     if (!valid && value?.length > 0) {
       setFormDataError({
         name,

@@ -27,6 +27,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { capitalizeWords } from "../pages/hospitalpayment/HospitalPayment";
+import { fetchPatientName } from "../services/user_service";
 
 const initialItem = {
   medication: "",
@@ -61,7 +62,7 @@ const DoctorPrescription = () => {
     setSelectedRow(null);
   };
 
-  const fetchPatientName = async () => {
+  const fetchPatientNames = async () => {
     try {
       setLoading(true);
 
@@ -72,17 +73,8 @@ const DoctorPrescription = () => {
       ) {
         return;
       }
-      const { data } = await api.put("/Patient/get-one-patient-info", {
-        patientCardNumber: cardNumber,
-      });
 
-      const fullName = [
-        data?.data?.value[0]?.patientFirstName,
-        data?.data?.value[0]?.patientMiddleName,
-        data?.data?.value[0]?.patientLastName,
-      ]
-        .filter(Boolean)
-        .join(" ");
+      const fullName = await fetchPatientName(cardNumber);
 
       if (fullName) {
         setPatientName(fullName);
@@ -91,7 +83,7 @@ const DoctorPrescription = () => {
         setPatientName("");
       }
     } catch (err) {
-      console.error("This is fetchPatientName Error: ", err);
+      console.error("This is fetchPatientNames Error: ", err);
       toast.error("Error fetching patient info.");
       setPatientName("");
     } finally {
@@ -279,7 +271,7 @@ const DoctorPrescription = () => {
   };
 
   const mrnCheck = (value) => {
-    const valid = /^[0-9]{5,}$/.test(value);
+    const valid = /^[0-9a-zA-Z\s\_\-]{5,}$/.test(value);
     if (!valid && value?.length > 0) {
       setCardNumberError("Please enter valid MRN (5+ digits).");
     } else {
@@ -362,7 +354,7 @@ const DoctorPrescription = () => {
                 setPatientName("");
                 mrnCheck(e.target.value);
               }}
-              onBlur={fetchPatientName}
+              onBlur={fetchPatientNames}
               fullWidth
               error={!!cardNumberError}
               helperText={cardNumberError}

@@ -239,7 +239,7 @@ function CBHIUsersManager() {
   ];
 
   const mrnCheck = (name, value) => {
-    const valid = /^[0-9]{5,}$/.test(value);
+    const valid = /^[0-9a-zA-Z\s\_\-]{5,}$/.test(value);
     setFormDataError({
       name,
       values: valid ? "" : "Please enter valid MRN (5+ digits).",
@@ -274,7 +274,7 @@ function CBHIUsersManager() {
 
       if (patientName?.length <= 0) {
         if (formDataError?.mrn?.length <= 0 && formData?.mrn?.length > 0) {
-          const response = await fetchPatientName(Number(formData?.mrn));
+          const response = await fetchPatientName(formData?.mrn);
 
           if (response?.length > 0) {
             setPatientName(response);
@@ -311,7 +311,7 @@ function CBHIUsersManager() {
         autoHeight
         rows={users}
         columns={columns}
-        sx={{ boxShadow: 3, borderRadius: 2,minWidth: 320 }}
+        sx={{ boxShadow: 3, borderRadius: 2, minWidth: 320 }}
       />
 
       <Dialog

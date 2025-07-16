@@ -301,7 +301,8 @@ function TrafficAccidentCrud() {
   };
 
   const mrnCheck = (name, value) => {
-    const comp = /^[0-9]{5,}$/;
+    const comp = /^[0-9a-zA-Z\s\_\-]{5,}$/;
+
     if (!comp.test(value) && value.length > 0) {
       setFormDataError({
         name: name,
@@ -339,9 +340,7 @@ function TrafficAccidentCrud() {
           formDataError?.patientCardNumber?.length <= 0 &&
           formData?.patientCardNumber?.length > 0
         ) {
-          const response = await fetchPatientName(
-            Number(formData?.patientCardNumber)
-          );
+          const response = await fetchPatientName(formData?.patientCardNumber);
 
           if (response?.length > 0) {
             setPatientName(response);
@@ -736,7 +735,7 @@ function TrafficAccidentCrud() {
         <Typography variant="h6" gutterBottom>
           Registered Records
         </Typography>
-        <Box style={{ height: 400, width: "100%" }}>
+        <Box>
           <DataGrid
             rows={records}
             columns={columns}

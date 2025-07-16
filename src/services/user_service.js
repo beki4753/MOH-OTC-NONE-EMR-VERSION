@@ -76,7 +76,7 @@ export const fetchPatientName = async (cardNumber) => {
     const response = await api.put(
       "/Patient/get-one-patient-info",
       {
-        patientCardNumber: `${cardNumber}`,
+        patientCardNumber: cardNumber,
       },
       {
         headers: {

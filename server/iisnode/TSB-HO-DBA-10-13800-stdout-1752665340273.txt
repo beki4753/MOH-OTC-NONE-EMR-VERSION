@@ -1,0 +1,2 @@
+Server running on port \\.\pipe\9f7fc750-bb8c-4a50-b745-5a4239a4eb0f
+Connected to MSSQL

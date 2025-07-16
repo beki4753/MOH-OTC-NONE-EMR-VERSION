@@ -400,7 +400,7 @@ const TreatmentEntryR = () => {
   };
 
   const mrnCheck = (name, value) => {
-    const comp = /^[0-9]{5,}$/;
+    const comp = /^[0-9a-zA-Z\s\_\-]{5,}$/;
     if (!comp.test(value) && value.length > 0) {
       setFormDataError((prev) => ({
         ...prev,
@@ -423,7 +423,7 @@ const TreatmentEntryR = () => {
           formDataError?.cardNumber?.length <= 0 &&
           formData?.cardNumber?.length > 0
         ) {
-          const response = await fetchPatientName(Number(formData?.cardNumber));
+          const response = await fetchPatientName(formData?.cardNumber);
 
           if (response?.length > 0) {
             setPatientName(response);

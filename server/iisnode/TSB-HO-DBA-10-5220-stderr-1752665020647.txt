@@ -1,0 +1,31 @@
+Database Connection Failed: ConnectionError: Failed to connect to LIVE-FOR-GOD:1433 - getaddrinfo ENOTFOUND live-for-god
+    at F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\mssql\lib\tedious\connection-pool.js:85:17
+    at Connection.onConnect (F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\tedious\lib\connection.js:849:9)
+    at Object.onceWrapper (node:events:633:26)
+    at Connection.emit (node:events:518:28)
+    at Connection.emit (F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\tedious\lib\connection.js:970:18)
+    at Connection.socketError (F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\tedious\lib\connection.js:1353:12)
+    at F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\tedious\lib\connection.js:1146:14
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+  code: 'ESOCKET',
+  originalError: ConnectionError: Failed to connect to LIVE-FOR-GOD:1433 - getaddrinfo ENOTFOUND live-for-god
+      at Connection.socketError (F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\tedious\lib\connection.js:1353:28)
+      at F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\node_modules\tedious\lib\connection.js:1146:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+    code: 'ESOCKET',
+    [cause]: Error: getaddrinfo ENOTFOUND live-for-god
+        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {
+      errno: -3008,
+      code: 'ENOTFOUND',
+      syscall: 'getaddrinfo',
+      hostname: 'live-for-god'
+    }
+  }
+}
+TypeError: Cannot read properties of undefined (reading 'request')
+    at F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\patients.js:13:8
+(node:5220) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+TypeError: Cannot read properties of undefined (reading 'request')
+    at F:\MOH OTC VERSIONS\MOH_OTC_tenatabiya_current_version\server\patients.js:13:8
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

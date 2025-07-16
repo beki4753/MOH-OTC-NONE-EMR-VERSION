@@ -28,7 +28,7 @@ import RadiologyIcon from "@mui/icons-material/Radio";
 import ProcedureIcon from "@mui/icons-material/MedicalServices";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../utils/api";
-import { getTokenValue } from "../services/user_service";
+import { fetchPatientName, getTokenValue } from "../services/user_service";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 
 const tokenvalue = getTokenValue();
@@ -229,22 +229,15 @@ const BahmniOrderPage = () => {
     setSelectedSubCategory(subs[0]);
   }, [selectedCategory, services]);
 
-  const fetchPatientName = async () => {
+  const fetchPatientNames = async () => {
     try {
       if (!cardNumber) return;
       if (!!patientName || !!cardNumberError) return;
 
       setIsFetching(true);
-      const { data } = await api.put("/Patient/get-one-patient-info", {
-        patientCardNumber: cardNumber,
-      });
-      const fullName = [
-        data?.data?.value[0]?.patientFirstName,
-        data?.data?.value[0]?.patientMiddleName,
-        data?.data?.value[0]?.patientLastName,
-      ]
-        .filter(Boolean)
-        .join(" ");
+
+      const fullName = await fetchPatientName(cardNumber);
+
       if (fullName) {
         setPatientName(fullName);
       } else {
@@ -252,7 +245,7 @@ const BahmniOrderPage = () => {
         setPatientName("");
       }
     } catch (err) {
-      console.error("This is fetchPatientName Error: ", err);
+      console.error("This is fetchPatientNames Error: ", err);
       toast.error("Error", err?.response?.data?.msg);
       setPatientName("");
     } finally {
@@ -268,7 +261,7 @@ const BahmniOrderPage = () => {
 
   const mrnCheck = (value) => {
     try {
-      const valid = /^[0-9]{5,}$/.test(value);
+      const valid = /^[0-9a-zA-Z\s\_\-]{5,}$/.test(value);
       if (!valid && value?.length > 0) {
         setCardNumberError("Please enter valid MRN (5+ digits).");
       } else {
@@ -546,7 +539,7 @@ const BahmniOrderPage = () => {
             label="Patient Card Number"
             value={cardNumber}
             onChange={handlMRNChange}
-            onBlur={() => fetchPatientName()}
+            onBlur={() => fetchPatientNames()}
             fullWidth
             error={!!cardNumberError}
             helperText={cardNumberError}

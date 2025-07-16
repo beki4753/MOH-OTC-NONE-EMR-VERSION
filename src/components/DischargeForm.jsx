@@ -357,7 +357,7 @@ const DischargeForm = () => {
           formData?.patientCardNumber?.length > 0
         ) {
           const response = await fetchPatientName(
-            Number(formData?.patientCardNumber)
+            formData?.patientCardNumber
           );
 
           if (response?.length > 0) {

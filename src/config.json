@@ -1,4 +1,4 @@
 {
-  "bakendURL": "http://localhost:1010",
-  "searchEnd": "http://localhost:5000"
+  "bakendURL": "http://10.113.14.250:1010",
+  "searchEnd": "http://10.113.14.250:5000"
 }
