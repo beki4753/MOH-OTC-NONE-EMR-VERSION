@@ -85,9 +85,7 @@ const TreatmentEntry = () => {
 
   // Define checkbox color based on theme mode
   const checkboxColor =
-    theme.palette.mode === "light"
-      ? theme.palette.primary.main
-      : theme.palette.secondary.main;
+    theme.palette.mode === "light" ? "#0078d7" : theme.palette.secondary.main;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -646,6 +644,9 @@ const TreatmentEntry = () => {
                             sx={{
                               color: checkboxColor,
                               "&.Mui-checked": {
+                                color: checkboxColor,
+                              },
+                              "&.MuiCheckbox-indeterminate": {
                                 color: checkboxColor,
                               },
                             }}
