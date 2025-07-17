@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Button, Typography, useTheme, Stack, Paper } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import dayjs from "dayjs";
 import api from "../utils/api";
 import ExcelJS from "exceljs";
@@ -10,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { renderETDateAtCell } from "./PatientSearch";
 import { getTokenValue } from "../services/user_service";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenValue = getTokenValue();
 
@@ -283,13 +283,11 @@ const PharmacyRequestsPage = () => {
       </Paper>
 
       <Paper elevation={1}>
-        <DataGrid
+        <MyDataGrid
           rows={rows}
           columns={columns}
           loading={loading}
-          autoHeight
           sx={{
-            minWidth: 320,
             "& .MuiDataGrid-columnHeaders": {
               backgroundColor: theme.palette.primary.light,
               fontWeight: "bold",

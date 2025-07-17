@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_admin=self.webpackChunkreact_admin||[]).push([[45],{80045:(e,r,t)=>{t.d(r,{A:()=>a});var n=t(98587);function a(e,r){if(null==e)return{};var t,a,l=(0,n.A)(e,r);if(Object.getOwnPropertySymbols){var c=Object.getOwnPropertySymbols(e);for(a=0;a<c.length;a++)t=c[a],-1===r.indexOf(t)&&{}.propertyIsEnumerable.call(e,t)&&(l[t]=e[t])}return l}}}]);
+//# sourceMappingURL=45.2cdef75b.chunk.js.map

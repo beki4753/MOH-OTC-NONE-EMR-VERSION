@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { DataGrid } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import { CancelPresentationTwoTone } from "@mui/icons-material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -19,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getTokenValue } from "../services/user_service";
 import EditStaffModal from "./EditStaffModal";
 import ConfirmationModal from "./ConfirmationModal";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenvalue = getTokenValue();
 const EmployeeUploadManager = () => {
@@ -244,12 +244,10 @@ const EmployeeUploadManager = () => {
           {fileData.length > 0 ? "Viewing from File" : "Viewing Registered"}
         </Typography>
       </Paper>
-      <Paper sx={{ height: 400 }}>
-        <DataGrid
+      <Paper>
+        <MyDataGrid
           rows={fileData.length <= 0 ? data : fileData}
           columns={columns}
-          autoHeight
-          sx={{ minWidth: 320 }}
           components={{
             ErrorOverlay: CustomErrorOverlay,
           }}

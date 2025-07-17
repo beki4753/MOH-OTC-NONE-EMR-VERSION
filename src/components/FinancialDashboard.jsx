@@ -8,7 +8,7 @@ import {
   Button,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+
 import { PieChart, Pie, Cell, Legend } from "recharts";
 import AgreementDialog from "./AgreementDialog";
 import api from "../utils/api";
@@ -20,6 +20,7 @@ import { formatAccounting } from "../pages/hospitalpayment/HospitalPayment";
 import { convertToEthDateWithTime } from "../pages/reports/CollectedReport";
 import "./NotoSansEthiopic-Regular-normal.js";
 import { renderETDateAtCell } from "./PatientSearch.jsx";
+import MyDataGrid from "./MyDataGrid.jsx";
 
 const tokenvalue = getTokenValue();
 
@@ -432,12 +433,7 @@ const FinancialDashboard = () => {
           <Typography variant="h6" gutterBottom>
             Recent Transactions
           </Typography>
-          <DataGrid
-            rows={transactions}
-            columns={columns}
-            autoHeight
-            sx={{ minWidth: 320 }}
-          />
+          <MyDataGrid rows={transactions} columns={columns} />
         </CardContent>
       </Card>
 

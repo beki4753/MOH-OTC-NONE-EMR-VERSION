@@ -18,7 +18,6 @@ import {
   InputAdornment,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { Add } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,6 +27,7 @@ import EtDatePicker from "mui-ethiopian-datepicker";
 import api from "../utils/api";
 import { fetchPatientName } from "../services/user_service";
 import { renderETDateAtCell } from "./PatientSearch";
+import MyDataGrid from "./MyDataGrid";
 
 const initialFormState = {
   mrn: "",
@@ -306,12 +306,10 @@ function CBHIUsersManager() {
           Add CBHI User
         </Button>
       </Box>
-
-      <DataGrid
-        autoHeight
+      <MyDataGrid
         rows={users}
         columns={columns}
-        sx={{ boxShadow: 3, borderRadius: 2, minWidth: 320 }}
+        sx={{ boxShadow: 3, borderRadius: 2 }}
       />
 
       <Dialog

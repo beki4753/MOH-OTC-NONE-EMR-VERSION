@@ -19,7 +19,6 @@ import {
 import { PDFDocument, rgb } from "pdf-lib";
 import numberToWords from "number-to-words";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { jsPDF } from "jspdf";
 import ReactDOM from "react-dom/client";
@@ -37,6 +36,7 @@ import { green, orange, grey } from "@mui/material/colors";
 import { renderETDateAtCell } from "../../components/PatientSearch.jsx";
 import "./NotoSansEthiopic-Regular-normal.js";
 import { normalizeText } from "../../utils/normalizer.js";
+import MyDataGrid from "../../components/MyDataGrid.jsx";
 
 export const capitalize = (str) => {
   if (!str) return "";
@@ -1765,13 +1765,9 @@ const HospitalPayment = () => {
           </Button>
         </Box>
       </Paper>
-      <Paper sx={{ height: 400 }}>
-        <DataGrid
-          rows={payments.length ? payments : []}
-          columns={columns}
-          autoHeight
-          sx={{ minWidth: 320 }}
-        />
+      <Paper>
+        <MyDataGrid rows={payments.length ? payments : []} columns={columns} />
+       
       </Paper>
       <ReceiptModal
         open={receiptOpen}

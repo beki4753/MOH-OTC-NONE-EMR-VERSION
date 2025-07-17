@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Container, Paper, Typography, IconButton } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EditIcon from "@mui/icons-material/Edit";
 import EditHospitalMgmt from "./EditHospitalMgmt";
+import MyDataGrid from "./MyDataGrid";
 
 const HospitalManagement = () => {
-  const [data, setData] = useState([]);
   const [selected, setSelected] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [editing, setIsEditing] = useState(false);
@@ -93,13 +92,8 @@ const HospitalManagement = () => {
       <Typography variant="h5" gutterBottom>
         District - Director - Hospital Mapping
       </Typography>
-      <Paper sx={{ height: 400 }}>
-        <DataGrid
-          rows={mocData}
-          columns={columns}
-          autoHeight
-          sx={{ minWidth: 320 }}
-        />
+      <Paper>
+        <MyDataGrid rows={mocData} columns={columns} />
       </Paper>
       <EditHospitalMgmt
         isOpen={openDialog}

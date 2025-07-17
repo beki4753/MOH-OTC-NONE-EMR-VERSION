@@ -27,7 +27,7 @@ import {
   FormControlLabel,
   TableHead,
 } from "@mui/material";
-import { DataGrid, GridFooterContainer, GridFooter } from "@mui/x-data-grid";
+import { GridFooterContainer, GridFooter } from "@mui/x-data-grid";
 import { useTheme } from "@mui/material/styles";
 import { Refresh } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
@@ -50,6 +50,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { alpha } from "@mui/material/styles";
+import MyDataGrid from "./MyDataGrid";
 
 const STATUS_COLORS = {
   ORDERED: "warning",
@@ -650,15 +651,13 @@ const Pharmacy = () => {
                   pt: 0,
                 }}
               >
-                <DataGrid
+                <MyDataGrid
                   rows={group.items}
                   columns={columns}
                   disableSelectionOnClick
                   hideFooterSelectedRowCount
                   getRowId={(row) => row.id}
-                  autoHeight
                   sx={{
-                    minWidth: 320,
                     border: `1px solid ${theme.palette.divider}`,
                     borderRadius: 2,
                     marginTop: "10px",

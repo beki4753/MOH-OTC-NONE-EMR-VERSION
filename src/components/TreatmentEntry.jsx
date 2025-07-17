@@ -18,9 +18,9 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import { CheckBox, Refresh } from "@mui/icons-material";
+import { Refresh } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
 import { useTheme } from "@mui/material/styles";
 import api from "../utils/api";
@@ -36,6 +36,7 @@ import PaidIcon from "@mui/icons-material/Paid";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { getTokenValue } from "../services/user_service";
+import MyDataGrid from "./MyDataGrid";
 
 // Utility function to return icon + color based on status
 const getStatusIcon = (status, theme) => {
@@ -426,15 +427,14 @@ const TreatmentEntry = () => {
       </Box>
 
       <Paper elevation={3}>
-        <DataGrid
+        <MyDataGrid
           rows={filtered}
           columns={columns}
           loading={isLoading}
           getRowId={(row) => row.id}
           onRowDoubleClick={(params, event) => handleDoubleClick(params, event)}
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
+      
       </Paper>
 
       {/* View Details Dialog */}

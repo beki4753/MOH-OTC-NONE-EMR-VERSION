@@ -40,3 +40,4 @@ export { default as PharmacyPage } from "./PharmacyPage";
 export { default as DoctorPrescription } from "./DoctorPrescription";
 export { default as BahmniOrderPage } from "./BahmniOrderPage";
 export { default as PharmacyRequestsPage } from "./PharmacyRequestsPage";
+export { default as MyDataGrid } from "./MyDataGrid";

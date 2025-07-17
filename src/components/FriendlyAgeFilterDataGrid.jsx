@@ -7,9 +7,8 @@ import {
   Select,
   InputLabel,
   FormControl,
-  Stack,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import MyDataGrid from "./MyDataGrid";
 
 // Sample data
 const rows = [
@@ -128,13 +127,7 @@ export default function FriendlyAgeFilterDataGrid() {
           </Grid>
         )}
       </Grid>
-
-      <DataGrid
-        rows={filteredRows}
-        columns={columns}
-        autoHeight
-        sx={{ minWidth: 320 }}
-      />
+      <MyDataGrid rows={filteredRows} columns={columns} />
     </Box>
   );
 }

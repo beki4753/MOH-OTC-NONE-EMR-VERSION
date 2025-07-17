@@ -15,7 +15,6 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import api from "../../utils/api";
-import { DataGrid } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import { GetAllPaymentType } from "../../services/report_service";
 import Box from "@mui/material/Box";
@@ -28,6 +27,7 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import "./NotoSansEthiopic-Regular-normal.js";
 import { renderETDateAtCell } from "../../components/PatientSearch";
+import MyDataGrid from "../../components/MyDataGrid.jsx";
 
 const normalizeType = (type) => type?.toString().trim().toLowerCase();
 
@@ -1204,16 +1204,11 @@ const ReportPage = () => {
             ))}
         </Tabs>
       </Paper>
-      <Paper sx={{ height: 400, margin: 2 }}>
-        <DataGrid
+      <Paper sx={{ margin: 2 }}>
+        <MyDataGrid
           rows={filteredPayments?.length ? filteredPayments : []}
           columns={columns}
           loading={isLoading}
-          slots={{
-            noResultsOverlay: CustomNoResultsOverlay,
-          }}
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
       </Paper>
       <Button

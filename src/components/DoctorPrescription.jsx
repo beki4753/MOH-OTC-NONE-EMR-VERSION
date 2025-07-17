@@ -19,7 +19,6 @@ import { useTheme } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import api from "../utils/api";
-import { DataGrid } from "@mui/x-data-grid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CloseIcon from "@mui/icons-material/Close";
@@ -28,6 +27,7 @@ import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { capitalizeWords } from "../pages/hospitalpayment/HospitalPayment";
 import { fetchPatientName } from "../services/user_service";
+import MyDataGrid from "./MyDataGrid";
 
 const initialItem = {
   medication: "",
@@ -777,25 +777,13 @@ const DoctorPrescription = () => {
         >
           Recently Sent Tests
         </Typography>
-        <Box sx={{ height: 300, width: "100%" }}>
-          <DataGrid
+        <Box>
+          <MyDataGrid
             rows={rows}
             columns={columns}
-            density="comfortable" // More compact row spacing
-            autoHeight
-            sx={{
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme.palette.primary.light + "15", // Light background for headers
-                fontWeight: "bold",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: `1px dotted ${theme.palette.divider}`, // Dotted line between cells
-              },
-              border: "none", // Remove default DataGrid border
-              minWidth: 320,
-            }}
             onRowDoubleClick={handleRowDoubleClick}
           />
+
         </Box>
         <Drawer anchor="right" open={open} onClose={handleClose}>
           <Box

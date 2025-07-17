@@ -11,18 +11,18 @@ import {
   IconButton,
   useTheme,
   Box,
-  CircularProgress,
 } from "@mui/material";
 import AddHospitalServices from "./AddHospitalServices";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { DataGrid, GridToolbarContainer } from "@mui/x-data-grid";
-import { Add, Edit, Delete, ReplayOutlined } from "@mui/icons-material";
+import {  GridToolbarContainer } from "@mui/x-data-grid";
+import { Add, Edit, Delete } from "@mui/icons-material";
 import api from "../utils/api";
 import { getTokenValue } from "../services/user_service";
 import { formatAccounting2 } from "../pages/hospitalpayment/HospitalPayment";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenvalue = getTokenValue();
 const categories = [
@@ -464,11 +464,9 @@ const PaymentManagementLists = () => {
           {(() => {
             const { rows, columns } = getRowsAndColumns(category);
             return (
-              <DataGrid
+              <MyDataGrid
                 rows={rows}
                 columns={columns}
-                autoHeight
-                sx={{ minWidth: 320 }}
                 slots={{
                   toolbar: () => (
                     <CustomToolbar

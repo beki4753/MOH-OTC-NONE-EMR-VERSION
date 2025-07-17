@@ -8,10 +8,10 @@ import {
   CircularProgress,
   IconButton,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import { toast } from "react-toastify";
 import { CancelPresentationTwoTone } from "@mui/icons-material";
+import MyDataGrid from "./MyDataGrid";
 
 const AddHospitalServices = ({
   isOpen = false,
@@ -142,13 +142,8 @@ const AddHospitalServices = ({
             {loading ? <CircularProgress size={24} /> : "Upload to Database"}
           </Button>
         </Stack>
-        <Box sx={{ height: 400, width: "100%" }}>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            autoHeight
-            sx={{ minWidth: 320 }}
-          />
+        <Box>
+          <MyDataGrid rows={rows} columns={columns} />
         </Box>
         <Box sx={{ display: "flex", justifyContent: "right", width: "100%" }}>
           <Button

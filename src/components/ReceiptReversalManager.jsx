@@ -7,7 +7,6 @@ import {
   CircularProgress,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import ReversalModal from "./ReversalModal";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,6 +14,7 @@ import api from "../utils/api";
 import LockIcon from "@mui/icons-material/Lock";
 import { renderETDateAtCell } from "./PatientSearch";
 import { formatAccounting2 } from "../pages/hospitalpayment/HospitalPayment";
+import MyDataGrid from "./MyDataGrid";
 
 const ReceiptReversalManager = () => {
   const [searchRef, setSearchRef] = useState("");
@@ -255,13 +255,10 @@ const ReceiptReversalManager = () => {
           </Button>
         )}
       </Box>
-
-      <DataGrid
+      <MyDataGrid
         rows={filteredReceipts}
         columns={columns}
         loading={isLoading}
-        autoHeight
-        sx={{ minWidth: 320 }}
       />
 
       <ReversalModal

@@ -16,15 +16,15 @@ import {
 import { Add, Delete } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../utils/api";
-import { fetchPatientName, registerUser } from "../services/user_service"; // Assuming this is needed
+import { fetchPatientName } from "../services/user_service"; // Assuming this is needed
 import EtDatePicker from "mui-ethiopian-datepicker";
 import {
   formatAccounting,
   formatAccounting2,
 } from "../pages/hospitalpayment/HospitalPayment";
-import { DataGrid } from "@mui/x-data-grid";
 import { renderETDateAtCell } from "./PatientSearch";
 import PatientTransactionsModal from "./PatientTransactionsModal";
+import MyDataGrid from "./MyDataGrid";
 
 const initialState = {
   services: [],
@@ -356,9 +356,7 @@ const DischargeForm = () => {
           formDataError?.patientCardNumber?.length <= 0 &&
           formData?.patientCardNumber?.length > 0
         ) {
-          const response = await fetchPatientName(
-            formData?.patientCardNumber
-          );
+          const response = await fetchPatientName(formData?.patientCardNumber);
 
           if (response?.length > 0) {
             setFromData((prev) => ({ ...prev, patientName: response }));
@@ -1069,10 +1067,9 @@ const DischargeForm = () => {
             mt: 5,
           }}
         >
-          <DataGrid
+          <MyDataGrid
             rows={rowData}
             columns={columns}
-            autoHeight
             sx={{
               backgroundColor: theme.palette.background.default,
               borderRadius: 2,

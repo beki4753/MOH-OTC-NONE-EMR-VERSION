@@ -12,8 +12,8 @@ import {
   useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { DataGrid } from "@mui/x-data-grid";
 import { formatAccounting2 } from "../pages/hospitalpayment/HospitalPayment";
+import MyDataGrid from "./MyDataGrid";
 
 export default function PatientTransactionsModal({ open, onClose, rows }) {
   const theme = useTheme();
@@ -104,10 +104,9 @@ export default function PatientTransactionsModal({ open, onClose, rows }) {
         </Box>
 
         {/* Transactions Table */}
-        <DataGrid
+        <MyDataGrid
           rows={rows || []}
           columns={columns}
-          autoHeight
           disableSelectionOnClick
           sx={{
             "& .MuiDataGrid-columnHeaders": {

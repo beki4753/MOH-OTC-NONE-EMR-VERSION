@@ -13,7 +13,7 @@ import {
   OutlinedInput,
   CircularProgress,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+
 import EtDatePicker from "mui-ethiopian-datepicker";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -23,6 +23,7 @@ import { normalizeText } from "../utils/normalizer";
 import { formatAccounting2 } from "../pages/hospitalpayment/HospitalPayment";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MyDataGrid from "./MyDataGrid";
 
 // Well-known reasons for pivoting
 const REASON_KEYS = [
@@ -762,14 +763,12 @@ const PaymentTable = () => {
           label="Aggregated View"
         />
       </Box>
-      <Box height={600}>
-        <DataGrid
+      <Box>
+        <MyDataGrid
           rows={displayedData}
           columns={columns}
           loading={loading}
           disableRowSelectionOnClick
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
       </Box>
       <ToastContainer />

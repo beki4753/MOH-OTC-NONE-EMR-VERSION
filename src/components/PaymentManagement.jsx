@@ -26,7 +26,6 @@ import { PDFDocument, rgb } from "pdf-lib";
 import ReactDOM from "react-dom/client";
 import RenderPDF from "../pages/hospitalpayment/RenderPDF";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -47,6 +46,7 @@ import { CarCrash, Refresh } from "@mui/icons-material";
 import { renderETDateAtCell } from "./PatientSearch";
 import { normalizeText } from "../utils/normalizer";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenvalue = getTokenValue();
 
@@ -1248,12 +1248,10 @@ function PaymentManagement() {
           </Stack>
         </Grid>
         <Grid item xs={12}>
-          <DataGrid
+          <MyDataGrid
             rows={filteredRows}
             loading={isLoading}
             columns={columns}
-            autoHeight 
-            sx={{ minWidth: 320 }}
           />
         </Grid>
       </Grid>

@@ -13,7 +13,6 @@ import {
   InputAdornment,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { Edit } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,6 +20,7 @@ import EtDatePicker from "mui-ethiopian-datepicker";
 import { renderETDateAtCell } from "./PatientSearch";
 import api from "../utils/api";
 import { fetchPatientName } from "../services/user_service";
+import MyDataGrid from "./MyDataGrid";
 
 const initialForm = {
   patientCardNumber: "",
@@ -736,7 +736,7 @@ function TrafficAccidentCrud() {
           Registered Records
         </Typography>
         <Box>
-          <DataGrid
+          <MyDataGrid
             rows={records}
             columns={columns}
             disableRowSelectionOnClick
@@ -744,8 +744,6 @@ function TrafficAccidentCrud() {
             localeText={{
               noRowsLabel: "No traffic accident records to display",
             }}
-            autoHeight
-            sx={{ minWidth: 320 }}
           />
         </Box>
       </Box>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./UserManagment.css";
-import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, Button, useTheme } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -12,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../utils/api";
 import SmartModal from "./SmartModal";
+import MyDataGrid from "./MyDataGrid";
 
 const UserManagment = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -255,12 +255,7 @@ const UserManagment = () => {
         clearUserData={handleCleare}
       />
       <div className="data-grid-container">
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          autoHeight
-          sx={{ minWidth: 320 }}
-        />
+        <MyDataGrid rows={rows} columns={columns} />
       </div>
       <ToastContainer />
     </div>

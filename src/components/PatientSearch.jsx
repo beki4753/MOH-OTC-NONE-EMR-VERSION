@@ -9,11 +9,11 @@ import {
   CircularProgress,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../utils/api";
 import { EthDateTime } from "ethiopian-calendar-date-converter";
+import MyDataGrid from "./MyDataGrid";
 
 const initialState = {
   mrn: "",
@@ -600,14 +600,12 @@ const PatientSearch = () => {
             </Grid>
           </Grid>
 
-          <Box sx={{ height: 300, width: "100%" }}>
-            <DataGrid
+          <Box>
+            <MyDataGrid
               rows={isSearching ? searchData : rows}
               columns={columns}
               loading={loading}
               disableSelectionOnClick
-              autoHeight
-              sx={{ minWidth: 320 }}
             />
           </Box>
         </Paper>

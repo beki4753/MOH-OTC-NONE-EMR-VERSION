@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./UserManagment.css";
-import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, Button, useTheme } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PasswordIcon from "@mui/icons-material/VpnKey";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AddRoleModal from "./AddRoleModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../utils/api";
+import MyDataGrid from "./MyDataGrid";
+
 const RoleManagment = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [dataToedit, setDataToedit] = useState(null);
@@ -114,12 +114,7 @@ const RoleManagment = () => {
       />
 
       <div className="data-grid-container">
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          autoHeight
-          sx={{ minWidth: 320 }}
-        />
+        <MyDataGrid rows={rows} columns={columns} />
       </div>
       <ToastContainer />
     </div>

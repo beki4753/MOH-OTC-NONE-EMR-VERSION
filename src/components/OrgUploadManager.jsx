@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { DataGrid } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import { CancelPresentationTwoTone } from "@mui/icons-material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
@@ -23,6 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getTokenValue } from "../services/user_service";
 import EditCreditUsers from "./EditCreditUsers";
 import ConfirmationModal from "./ConfirmationModal";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenvalue = getTokenValue();
 
@@ -456,8 +456,8 @@ const OrgUploadManager = () => {
           </Typography>
         </Grid>
       </Paper>
-      <Paper sx={{ height: 400 }}>
-        <DataGrid
+      <Paper>
+        <MyDataGrid
           rows={
             SearchData.length > 0
               ? SearchData
@@ -466,13 +466,9 @@ const OrgUploadManager = () => {
               : fileData
           }
           columns={columns}
-          // getRowId={(row) => row.id}
-          // error={error}
           components={{
             ErrorOverlay: CustomErrorOverlay,
           }}
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
       </Paper>
       <EditCreditUsers

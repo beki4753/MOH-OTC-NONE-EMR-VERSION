@@ -11,7 +11,6 @@ import {
   CircularProgress,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import api from "../utils/api";
@@ -20,6 +19,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LockIcon from "@mui/icons-material/Lock";
 import * as XLSX from "xlsx";
+import MyDataGrid from "./MyDataGrid";
 
 const formatter2 = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 2,
@@ -395,6 +395,7 @@ const ReportReceiptFetcher = () => {
               variant="contained"
               size="large"
               onClick={() => handleSearch()}
+              color={theme.palette.mode === "dark" ? "secondary" : "primary"}
               disabled={
                 loading ||
                 (tab === 0 ? !cardNumber : !receiptNumber) ||
@@ -416,13 +417,10 @@ const ReportReceiptFetcher = () => {
             </Button>
           )}
         </Box>
-
-        <DataGrid
-          autoHeight
+        <MyDataGrid
           rows={tab === 0 ? reportData : receiptData}
           columns={columns}
           disableRowSelectionOnClick
-          sx={{ minWidth: 320 }}
         />
       </CardContent>
       <ToastContainer />

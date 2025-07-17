@@ -21,7 +21,6 @@ import {
   FormControlLabel,
   InputAdornment,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { useTheme } from "@mui/material/styles";
 import LabIcon from "@mui/icons-material/Science";
 import RadiologyIcon from "@mui/icons-material/Radio";
@@ -30,6 +29,7 @@ import { ToastContainer, toast } from "react-toastify";
 import api from "../utils/api";
 import { fetchPatientName, getTokenValue } from "../services/user_service";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenvalue = getTokenValue();
 
@@ -795,13 +795,7 @@ const BahmniOrderPage = () => {
         <Typography variant="h6" fontWeight={700} gutterBottom>
           Recently Sent Tests
         </Typography>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          loading={loading}
-          autoHeight
-          sx={{ minWidth: 320 }}
-        />
+        <MyDataGrid rows={rows} columns={columns} loading={loading} />
       </Box>
 
       <ToastContainer />

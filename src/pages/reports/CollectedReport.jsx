@@ -8,7 +8,6 @@ import {
   Box,
   useTheme,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import api from "../../utils/api";
 import { getTokenValue } from "../../services/user_service";
@@ -19,6 +18,7 @@ import EtDatePicker from "mui-ethiopian-datepicker";
 import { EthDateTime } from "ethiopian-calendar-date-converter";
 import { renderETDateAtCell } from "../../components/PatientSearch";
 import { tokens } from "../../theme";
+import { MyDataGrid } from "../../components";
 
 const tokenvalue = getTokenValue();
 
@@ -257,8 +257,8 @@ const CollectedReport = () => {
         )}
       </Typography>
 
-      <Paper sx={{ height: 400, marginBottom: 2 }}>
-        <DataGrid
+      <Paper sx={{ marginBottom: 2 }}>
+        <MyDataGrid
           rows={showOnlyHighAmount ? filteredData : data}
           columns={[
             { field: "id", headerName: "ID", width: 40 },
@@ -296,8 +296,6 @@ const CollectedReport = () => {
               },
             },
           ]}
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
       </Paper>
       <Button

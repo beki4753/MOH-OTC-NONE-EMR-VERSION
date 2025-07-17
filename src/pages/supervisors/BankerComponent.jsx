@@ -13,7 +13,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { MyDataGrid } from "../../components";
 
 const mockCashPayments = [
   {
@@ -217,14 +217,11 @@ const BankerComponent = () => {
       </Grid>
 
       {/* Data Table */}
-      <Paper sx={{ height: 400, marginTop: 3, padding: 2 }}>
-        <DataGrid
+      <Paper sx={{ marginTop: 3, padding: 2 }}>
+        <MyDataGrid
           rows={cashPayments}
           columns={columns}
-          pageSize={5}
           disableSelectionOnClick
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
       </Paper>
     </Container>

@@ -13,10 +13,10 @@ import api from "../utils/api";
 import { normalizeText } from "../utils/normalizer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DataGrid } from "@mui/x-data-grid";
 import { CircularProgress } from "@mui/material";
 import { DeleteIcon, EditIcon } from "lucide-react";
 import ConfirmationModal from "./ConfirmationModal";
+import MyDataGrid from "./MyDataGrid";
 
 const initialState = {
   type: "",
@@ -402,14 +402,8 @@ const PaymentTypeLimitForm = () => {
         Existing Payment Type Limits
       </Typography>
 
-      <Box sx={{ height: 400, width: "100%", mt: 2 }}>
-        <DataGrid
-          rows={limits}
-          columns={columns}
-          loading={loading}
-          autoHeight
-          sx={{ minWidth: 320 }}
-        />
+      <Box sx={{ mt: 2 }}>
+        <MyDataGrid rows={limits} columns={columns} loading={loading} />
       </Box>
 
       <ConfirmationModal

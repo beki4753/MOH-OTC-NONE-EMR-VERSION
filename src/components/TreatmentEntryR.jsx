@@ -25,7 +25,6 @@ import {
 } from "@mui/material";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import SearchIcon from "@mui/icons-material/Search";
-import { DataGrid } from "@mui/x-data-grid";
 import api from "../utils/api";
 import { useLang } from "../contexts/LangContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -33,12 +32,12 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   fetchPatientName,
   getTokenValue,
-  registerUser,
 } from "../services/user_service";
 import { Refresh } from "@mui/icons-material";
 import { tokens } from "../theme";
 import { normalizeText } from "../utils/normalizer";
 import { renderETDateAtCell } from "./PatientSearch";
+import MyDataGrid from "./MyDataGrid";
 
 const tokenvalue = getTokenValue();
 
@@ -886,13 +885,11 @@ const TreatmentEntryR = () => {
       </Box>
 
       <Paper elevation={2}>
-        <DataGrid
+        <MyDataGrid
           rows={treatmentList}
           loading={isLoading}
           columns={columns}
           disableSelectionOnClick
-          autoHeight
-          sx={{ minWidth: 320 }}
         />
       </Paper>
       <ToastContainer />

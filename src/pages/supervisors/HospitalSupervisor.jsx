@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+
+import { MyDataGrid } from "../../components";
 
 const HospitalSupervisor = () => {
   const [pendingApprovals, setPendingApprovals] = useState([]);
@@ -75,12 +76,7 @@ const HospitalSupervisor = () => {
       <Card>
         <CardContent>
           <Typography variant="h6">Pending Approvals</Typography>
-          <DataGrid
-            rows={pendingApprovals}
-            columns={columns}
-            autoHeight
-            sx={{ minWidth: 320 }}
-          />
+          <MyDataGrid rows={pendingApprovals} columns={columns} />
         </CardContent>
       </Card>
 
@@ -95,11 +91,9 @@ const HospitalSupervisor = () => {
             >
               Clear All CBHI
             </Button>
-            <DataGrid
+            <MyDataGrid
               rows={cbhiPayments}
               columns={[{ field: "woreda", headerName: "Woreda", width: 200 }]}
-              autoHeight
-              sx={{ minWidth: 320 }}
             />
           </CardContent>
         </Card>
@@ -116,7 +110,7 @@ const HospitalSupervisor = () => {
             >
               Clear All Credit
             </Button>
-            <DataGrid
+            <MyDataGrid
               rows={creditPayments}
               columns={[
                 {
@@ -125,8 +119,6 @@ const HospitalSupervisor = () => {
                   width: 200,
                 },
               ]}
-              autoHeight
-              sx={{ minWidth: 320 }}
             />
           </CardContent>
         </Card>
